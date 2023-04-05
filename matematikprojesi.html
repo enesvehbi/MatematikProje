@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset= "UTF-8">
+	<title>Permütasyon ve Kombinasyon Hesaplayıcı</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		
+		.container {
+			margin: 0 auto;
+			width: 50%;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+			text-align: center;
+		}
+		
+		h1 {
+			margin-top: 0;
+			color: #333;
+		}
+		
+		form {
+			display: inline-block;
+			margin-bottom: 20px;
+		}
+		
+		input[type="number"] {
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+			width: 200px;
+		}
+		
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		
+		.credit {
+			margin-top: 50px;
+			color: #666;
+		}
+		
+		.button-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		
+		.button {
+			margin: 0 10px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			background-color: #4CAF50;
+			color: #fff;
+			transition: background-color 0.3s;
+		}
+		
+		.button:hover {
+			background-color: #3e8e41;
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<h1>Permütasyon ve Kombinasyon Hesaplayıcı</h1>
+		
+		<form id="per-form">
+			<label for="total">Toplam Eleman Sayısı:</label><br>
+			<input type="number" id="total" name="total" min="1"><br>
+			<label for="select">Seçilecek Eleman Sayısı:</label><br>
+			<input type="number" id="select" name="select" min="1"><br><br>
+		</form>
+		
+		<div class="button-container">
+			<button class="button" onclick="hesaplaPerm()">Permütasyon Hesapla</button>
+			<button class="button" onclick="hesaplaComb()">Kombinasyon Hesapla</button>
+		</div>
+		
+		<div id="result"></div>
+		
+		<div class="credit">Matematik Projesi | Enes Vehbi | 10-C | 1522</div>
+	</div>
+	
+	<script>
+        		function hesaplaPerm() {
+			var total = parseInt(document.getElementById("total").value);
+			var select = parseInt(document.getElementById("select").value);
+			
+			if (isNaN(total) || isNaN(select)) {
+				document.getElementById("result").innerHTML = "<p>Lütfen geçerli sayılar girin.</p>";
+			} else if (select > total) {
+				document.getElementById("result").innerHTML = "<p>Seçilecek eleman sayısı toplam eleman sayısından büyük olamaz.</p>";
+			} else {
+				var result = 1;
+				for (var i = total; i > total - select; i--) {
+					result *= i;
+				}
+				document.getElementById("result").innerHTML = "<p>" + total + " eleman arasından " + select + " elemanın sıralı seçimi sonucu permütasyon: " + result + "</p>";
+			}
+		}
+		
+		function hesaplaComb() {
+			var total = parseInt(document.getElementById("total").value);
+			var select = parseInt(document.getElementById("select").value);
+			
+			if (isNaN(total) || isNaN(select)) {
+				document.getElementById("result").innerHTML = "<p>Lütfen geçerli sayılar girin.</p>";
+			} else if (select > total) {
+				document.getElementById("result").innerHTML = "<p>Seçilecek eleman sayısı toplam eleman sayısından büyük olamaz.</p>";
+			} else {
+				var result = 1;
+				for (var i = total; i > total - select; i--) {
+					result *= i;
+				}
+				for (var i = 1; i <= select; i++) {
+					result /= i;
+				}
+				document.getElementById("result").innerHTML = "<p>" + total + " eleman arasından " + select + " elemanın sırasız seçimi sonucu kombinasyon: " + result + "</p>";
+			}
+		}
+	</script>
+	
+</body>
+</html>
+
